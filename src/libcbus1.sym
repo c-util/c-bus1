@@ -1,0 +1,6 @@
+LIBCBUS1_1 {
+global:
+        c_bus1_new;
+local:
+       *;
+};
