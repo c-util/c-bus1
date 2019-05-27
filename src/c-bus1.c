@@ -16,33 +16,33 @@
 static_assert(sizeof(((struct bus1_transfer){})) == sizeof(((CBus1Transfer){})), "ABI Mismatch");
 static_assert(alignof(((struct bus1_transfer){})) == alignof(((CBus1Transfer){})), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_transfer){}).flags) == sizeof(((CBus1Transfer){}).flags), "ABI Mismatch");
-static_assert(alignof(((struct bus1_transfer){}).flags) == alignof(((CBus1Transfer){}).flags), "ABI Mismatch");
+static_assert(offsetof(struct bus1_transfer, flags) == offsetof(CBus1Transfer, flags), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_transfer){}).id) == sizeof(((CBus1Transfer){}).id), "ABI Mismatch");
-static_assert(alignof(((struct bus1_transfer){}).id) == alignof(((CBus1Transfer){}).id), "ABI Mismatch");
+static_assert(offsetof(struct bus1_transfer, id) == offsetof(CBus1Transfer, id), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_transfer){}).id) == sizeof(((CBus1Transfer){}).id.u64), "ABI Mismatch");
-static_assert(alignof(((struct bus1_transfer){}).id) == alignof(((CBus1Transfer){}).id.u64), "ABI Mismatch");
+static_assert(offsetof(struct bus1_transfer, id) == offsetof(CBus1Transfer, id.u64), "ABI Mismatch");
 
 /* verify CBus1Message */
 static_assert(sizeof(((struct bus1_message){})) == sizeof(((CBus1Message){})), "ABI Mismatch");
 static_assert(alignof(((struct bus1_message){})) == alignof(((CBus1Message){})), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).flags) == sizeof(((CBus1Message){}).flags), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).flags) == alignof(((CBus1Message){}).flags), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, flags) == offsetof(CBus1Message, flags), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).type) == sizeof(((CBus1Message){}).type), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).type) == alignof(((CBus1Message){}).type), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, type) == offsetof(CBus1Message, type), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).n_transfers) == sizeof(((CBus1Message){}).n_transfers), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).n_transfers) == alignof(((CBus1Message){}).n_transfers), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, n_transfers) == offsetof(CBus1Message, n_transfers), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).ptr_transfers) == sizeof(((CBus1Message){}).ptr_transfers), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).ptr_transfers) == alignof(((CBus1Message){}).ptr_transfers), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, ptr_transfers) == offsetof(CBus1Message, ptr_transfers), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).ptr_transfers) == sizeof(((CBus1Message){}).ptr_transfers.u64), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).ptr_transfers) == alignof(((CBus1Message){}).ptr_transfers.u64), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, ptr_transfers) == offsetof(CBus1Message, ptr_transfers.u64), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).n_data) == sizeof(((CBus1Message){}).n_data), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).n_data) == alignof(((CBus1Message){}).n_data), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, n_data) == offsetof(CBus1Message, n_data), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).n_data_vecs) == sizeof(((CBus1Message){}).n_data_vecs), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).n_data_vecs) == alignof(((CBus1Message){}).n_data_vecs), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, n_data_vecs) == offsetof(CBus1Message, n_data_vecs), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).ptr_data_vecs) == sizeof(((CBus1Message){}).ptr_data_vecs), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).ptr_data_vecs) == alignof(((CBus1Message){}).ptr_data_vecs), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, ptr_data_vecs) == offsetof(CBus1Message, ptr_data_vecs), "ABI Mismatch");
 static_assert(sizeof(((struct bus1_message){}).ptr_data_vecs) == sizeof(((CBus1Message){}).ptr_data_vecs.u64), "ABI Mismatch");
-static_assert(alignof(((struct bus1_message){}).ptr_data_vecs) == alignof(((CBus1Message){}).ptr_data_vecs.u64), "ABI Mismatch");
+static_assert(offsetof(struct bus1_message, ptr_data_vecs) == offsetof(CBus1Message, ptr_data_vecs.u64), "ABI Mismatch");
 
 static void c_bus1_event_bind(CBus1Event *event, CBus1 *b1) {
         c_assert(!event->b1);
