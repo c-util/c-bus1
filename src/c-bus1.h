@@ -42,7 +42,7 @@ struct CBus1Transfer {
                 uint64_t u64;
                 CBus1Handle *handle;
         } id;
-};
+} __attribute__((__aligned__(8)));
 
 struct CBus1Message {
         uint64_t flags;
@@ -58,7 +58,7 @@ struct CBus1Message {
                 uint64_t u64;
                 struct iovec *ptr;
         } ptr_data_vecs;
-};
+} __attribute__((__aligned__(8)));
 
 /* events */
 
