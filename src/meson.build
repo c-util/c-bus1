@@ -10,8 +10,8 @@ libcbus1_deps = [
         dep_cstdaux,
 ]
 
-libcbus1_private = static_library(
-        'cbus1-private',
+libcbus1_both = both_libraries(
+        'cbus1-'+major,
         [
                 'c-bus1.c',
                 'c-bus1-sys.c',
@@ -21,26 +21,19 @@ libcbus1_private = static_library(
                 '-fno-common',
         ],
         dependencies: libcbus1_deps,
-        pic: true,
-)
-
-libcbus1_shared = shared_library(
-        'cbus1',
-        objects: libcbus1_private.extract_all_objects(),
-        dependencies: libcbus1_deps,
         install: not meson.is_subproject(),
-        soversion: 0,
-        link_depends: libcbus1_symfile,
         link_args: [
                 '-Wl,--no-undefined',
                 '-Wl,--version-script=@0@'.format(libcbus1_symfile),
         ],
+        link_depends: libcbus1_symfile,
+        soversion: 0,
 )
 
 libcbus1_dep = declare_dependency(
-        include_directories: include_directories('.'),
-        link_with: libcbus1_private,
         dependencies: libcbus1_deps,
+        include_directories: include_directories('.'),
+        link_with: libcbus1_both.get_static_lib(),
         version: meson.project_version(),
 )
 
@@ -48,11 +41,11 @@ if not meson.is_subproject()
         install_headers('c-bus1.h')
 
         mod_pkgconfig.generate(
-                libraries: libcbus1_shared,
-                version: meson.project_version(),
-                name: 'libcbus1',
-                filebase: 'libcbus1',
                 description: project_description,
+                filebase: 'libcbus1-'+major,
+                libraries: libcbus1_both.get_shared_lib(),
+                name: 'libcbus1',
+                version: meson.project_version(),
         )
 endif
 
@@ -60,7 +53,7 @@ endif
 # target: test-*
 #
 
-test_api = executable('test-api', ['test-api.c'], link_with: libcbus1_shared)
+test_api = executable('test-api', ['test-api.c'], link_with: libcbus1_both.get_shared_lib())
 test('API Symbol Visibility', test_api)
 
 test_basic = executable('test-basic', ['test-basic.c'], dependencies: libcbus1_dep)
