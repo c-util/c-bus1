@@ -22,10 +22,9 @@ libcbus1_both = both_libraries(
         ],
         dependencies: libcbus1_deps,
         install: not meson.is_subproject(),
-        link_args: [
-                '-Wl,--no-undefined',
+        link_args: dep_cstdaux.get_variable('version-scripts') == 'yes' ? [
                 '-Wl,--version-script=@0@'.format(libcbus1_symfile),
-        ],
+        ] : [],
         link_depends: libcbus1_symfile,
         soversion: 0,
 )
